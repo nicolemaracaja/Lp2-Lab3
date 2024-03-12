@@ -45,7 +45,6 @@ public class LeitorFilmNow {
 		
 		return carregados;
 	}
-
 	
 	/**
 	 * Coloca no sistema os dados de uma linha do arquivo de filmes inicial. 
@@ -58,7 +57,7 @@ public class LeitorFilmNow {
 		String nome = campos[COLUNA_NOME].trim();
 		String ano = campos[COLUNA_ANO].trim();
 		String local = campos[COLUNA_LOCAL].trim();
-
+		
 		fn.cadastraFilme(posicao, nome, Integer.parseInt(ano), local);
 	}
 

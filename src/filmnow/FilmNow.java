@@ -24,7 +24,7 @@ public class FilmNow {
 	 * @return O array de filmes.
 	 */
 	public String[] getFilmes() {
-		return this.filmes.clone();
+		return this.filmes.clone();		
 	}
 
 	/**

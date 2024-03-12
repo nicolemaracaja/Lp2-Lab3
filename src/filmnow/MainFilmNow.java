@@ -129,8 +129,13 @@ public class MainFilmNow {
 	private static void adicionaFilme(FilmNow fn, Scanner scanner) {
 		System.out.print("\nPosição no sistema> ");
 		int posicao = scanner.nextInt();
+		if (posicao > 100) {
+			System.out.println("POSIÇÃO INVÁLIDA");
+			return;
+		}
+		scanner.nextLine();
 		System.out.print("\nNome> ");
-		String nome = scanner.next();
+		String nome = scanner.nextLine();
 		System.out.print("\nAno> ");
 		String ano = scanner.next();
 		System.out.print("\nLocal> ");
