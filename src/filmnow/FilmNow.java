@@ -68,7 +68,6 @@ public class FilmNow {
 		this.filmes[posicao] = filme;
 	}
 
-
 	/**
 	 * Retorna o contato localizado na posicao selecionada.
 	 * Caso o contato esteja na lista de favoritos, ele terá um "❤️" no início. 
@@ -77,7 +76,7 @@ public class FilmNow {
 	 */
 	public String detalhaFilme(int posicao) {
 		
-		return filmes[posicao].imprimeFilme();
+		return filmes[posicao].toStringFilme();
 	}
 	
 }

@@ -78,23 +78,20 @@ public class Filme {
 		return false;
 	}
 	
+	@Override
 	/**
 	 * Um toString que retorna o nome e o ano de lancamento do filme.
 	 * @return toString.
 	 */
-	@Override
 	public String toString() {
-		return this.nome + " " + this.ano;
+		return this.nome + ", " + this.ano;
 	}
 	
 	/**
 	 * Um toString que retorna o nome, o ano de lancamento e o local onde o filme foi lançado.
 	 * @return toString.
 	 */
-	public String imprimeFilme() {
-		StringBuffer sb = new StringBuffer();
-		sb.append(nome).append(", ").append(ano).append("\n").append(local);
-		
-		return sb.toString();		
+	public String toStringFilme() {
+		return this.nome + ", " + this.ano + "\n" + this.local;
 	}
 }

@@ -153,7 +153,7 @@ public class MainFilmNow {
 			System.out.print("\nAno> ");
 			String ano = scanner.next();
 			
-			if (ano.isBlank()) {
+			if (ano.isBlank()) { //caso a entrada seja vazia, caso de erro
 				System.out.println("FILME INVÁLIDO");
 				return;
 			}
