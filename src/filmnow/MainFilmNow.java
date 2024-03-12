@@ -33,16 +33,14 @@ public class MainFilmNow {
 			escolha = menu(scanner);
 			comando(escolha, fn, scanner);
 		}
-
 	}
-
+	
 	/**
 	 * Exibe o menu e captura a escolha do/a usuário/a.
 	 * 
 	 * @param scanner Para captura da opção do usuário/a.
 	 * @return O comando escolhido.
-	 */
-	
+	 */	
 	private static String menu(Scanner scanner) {
 		System.out.println(
 				"\n---\nMENU\n" + 
@@ -88,7 +86,7 @@ public class MainFilmNow {
 	 */
 	private static void mostrarFilmes(FilmNow fn) {
 
-		String[] filmes = fn.getFilmes();
+		Filme[] filmes = fn.getFilmes();
 		for (int i = 0; i < filmes.length; i++) {
 			if (filmes[i] != null) {
 				System.out.println(formataFilme(i, filmes[i]));
@@ -105,7 +103,12 @@ public class MainFilmNow {
 	private static void detalharFilme(FilmNow fn, Scanner scanner) {
 		System.out.print("\nQual filme> ");
 		int posicao = scanner.nextInt();
-		String filme = fn.getFilme(posicao);
+		
+		if(fn.getFilmes()[posicao] == null){
+			System.out.println("POSICAO INVALIDA");
+			return;
+		}
+		Filme filme = fn.getFilme(posicao);
 		System.out.println("Dados do filme:\n" + filme);
 	}
 
@@ -116,7 +119,7 @@ public class MainFilmNow {
 	 * @param filme O filme a ser impresso.
 	 * @return A String formatada.
 	 */
-	private static String formataFilme(int posicao, String filme) {
+	private static String formataFilme(int posicao, Filme filme) {
 		return posicao + " - " + filme;
 	}
 
@@ -127,20 +130,50 @@ public class MainFilmNow {
 	 * @param scanner Scanner para pedir informações do contato.
 	 */
 	private static void adicionaFilme(FilmNow fn, Scanner scanner) {
-		System.out.print("\nPosição no sistema> ");
-		int posicao = scanner.nextInt();
-		if (posicao > 100) {
-			System.out.println("POSIÇÃO INVÁLIDA");
-			return;
+		
+		while (true) {
+			
+			System.out.print("\nPosição no sistema> ");
+			int posicao = scanner.nextInt();
+			
+			if (posicao < 1 || posicao > 100) {
+				System.out.println("POSIÇÃO INVÁLIDA");
+				return;
+			}
+			
+			scanner.nextLine();
+			System.out.print("\nNome> ");
+			String nome = scanner.nextLine();
+			
+			if (nome.isBlank()) { //caso a entrada seja vazia, caso de erro
+				System.out.println("FILME INVÁLIDO");
+				return;
+			}
+			
+			System.out.print("\nAno> ");
+			String ano = scanner.next();
+			
+			if (ano.isBlank()) {
+				System.out.println("FILME INVÁLIDO");
+				return;
+			}
+					
+			System.out.print("\nLocal> ");
+			String local = scanner.next();
+			
+			Filme filme = new Filme(nome, ano, local);
+			
+			if (filme.jaExiste(fn.getFilmes())){
+				System.out.println("FILME JÁ CADASTRADO");
+				return;
+			}
+			
+			fn.cadastraFilme(posicao, nome, ano, local);
+			System.out.println("CADASTRO REALIZADO");
+			
+			break;
+				
 		}
-		scanner.nextLine();
-		System.out.print("\nNome> ");
-		String nome = scanner.nextLine();
-		System.out.print("\nAno> ");
-		String ano = scanner.next();
-		System.out.print("\nLocal> ");
-		String local = scanner.next();
-		fn.cadastraFilme(posicao, nome, Integer.parseInt(ano), local);
 	}
 
 	/**
