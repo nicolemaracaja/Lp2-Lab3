@@ -7,7 +7,7 @@ import java.util.Scanner;
 /**
  * Interface com menus texto para manipular o sistema FilmNow.
  * 
- * @author eliane
+ * @author Nicole Brito Maracajá
  *
  */
 public class MainFilmNow {
@@ -47,7 +47,10 @@ public class MainFilmNow {
 						"(A)Adicionar filme\n" + 
 						"(M)Mostrar todos\n" + 
 						"(D)Detalhar filme\n" + 
-						"(S)air\n" + 
+						"(E)Exibir HotList\n" +
+						"(H)Atribuir Hot\n" +
+						"(R)Remover Hot\n" +
+						"(S)Sair\n" + 
 						"\n" + 
 						"Opção> ");
 		return scanner.next().toUpperCase();
@@ -71,6 +74,12 @@ public class MainFilmNow {
 		case "D":
 			detalharFilme(fn, scanner);
 			break;
+		case "E":
+			exibiHotList(fn);
+		case "H":
+			adicionarHot(fn, scanner);
+		case "R":
+			removerHot(fn, scanner);
 		case "S":
 			sai();
 			break;
@@ -80,8 +89,52 @@ public class MainFilmNow {
 	}
 
 	/**
-	 * Imprime lista de filmes.
+	 * Remove um filme da hotlist.
+	 * @param fn O sistema Filmnow.
+	 * @param scanner Scanner para pedir a posicao.
+	 */
+	private static void removerHot(FilmNow fn, Scanner scanner) {
+		System.out.println("Posicao> ");
+		int posicao = scanner.nextInt();
+		
+		fn.removeHot(posicao);
+	}
+
+	private static void adicionarHot(FilmNow fn, Scanner scanner) {
+		
+		System.out.print("Filme> ");
+		int filmeposicao = scanner.nextInt();
+		
+		if(filmeposicao < 1 || filmeposicao > 100) {
+			System.out.println("POSIÇÃO INVÁLIDA");
+			return;
+		}
+		System.out.print("Posicao> ");
+		int posicaoHot = scanner.nextInt();
+		
+		if(posicaoHot < 1 || posicaoHot > 10) {
+			System.out.println("POSIÇÃO INVÁLIDA");
+			return;
+		}
+		
+		fn.adicionaHot(filmeposicao, posicaoHot);
+		
+		System.out.println("ADICIONADO Á HOTLIST NA POSIÇÃO " + posicaoHot);
+		return;
+	}
+
+	/**
+	 * Imprime a HotList.
 	 * 
+	 * @param fn O sistema FilmNow
+	 */
+	private static void exibiHotList(FilmNow fn) {
+		fn.exibirHotList();
+	}		
+
+	/**
+	 * Imprime lista de filmes.
+
 	 * @param fn O sistema FilmNow a ser manipulado.
 	 */
 	private static void mostrarFilmes(FilmNow fn) {
@@ -109,7 +162,7 @@ public class MainFilmNow {
 			return;
 		}
 		Filme filme = fn.getFilme(posicao);
-		System.out.println("Dados do filme:\n" + filme);
+		System.out.println("Dados do filme:\n" + filme.toStringFilme());
 	}
 
 	/**
@@ -145,7 +198,7 @@ public class MainFilmNow {
 			System.out.print("\nNome> ");
 			String nome = scanner.nextLine();
 			
-			if (nome.isBlank()) { //caso a entrada seja vazia, caso de erro
+			if (nome.isEmpty() || nome.isBlank()) { //caso a entrada seja vazia, caso de erro
 				System.out.println("FILME INVÁLIDO");
 				return;
 			}
@@ -159,17 +212,23 @@ public class MainFilmNow {
 			}
 					
 			System.out.print("\nLocal> ");
-			String local = scanner.next();
+			scanner.nextLine();
+			String local = scanner.nextLine();
+			
+			if (local.isEmpty() || local.equals("")) {
+				System.out.println("FILME INVÁLIDO");
+				return;
+			}
 			
 			Filme filme = new Filme(nome, ano, local);
 			
 			if (filme.jaExiste(fn.getFilmes())){
-				System.out.println("FILME JÁ CADASTRADO");
+				System.out.println("FILME JÁ ADICIONADO");
 				return;
 			}
 			
 			fn.cadastraFilme(posicao, nome, ano, local);
-			System.out.println("CADASTRO REALIZADO");
+			System.out.println("FILME ADICIONADO");
 			
 			break;
 				

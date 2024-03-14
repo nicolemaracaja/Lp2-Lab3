@@ -1,5 +1,11 @@
 package filmnow;
 
+/**
+ * Constrói o filme a partir de seu nome, ano de lançamento e local que foi lançado.
+ * 
+ * @author Nicole Brito Maracajá
+ *
+ */
 public class Filme {
 
 	private String nome;
@@ -19,10 +25,10 @@ public class Filme {
 		this.ano = ano;
 		this.local = local;
 
-		if(nome.isBlank()) {
+		if(nome.isBlank()) { //verifica se a entrada contem apenas espacos em branco
 			throw new IllegalArgumentException("FILME INVALIDO");
 		}
-		if(local.isBlank()) {
+		if(local.isBlank()) { //verifica se a entrada contem apenas espacos em branco
 			throw new IllegalArgumentException("FILME INVALIDO");
 		}		
 	}
@@ -84,7 +90,7 @@ public class Filme {
 	 * @return toString.
 	 */
 	public String toString() {
-		return this.nome + ", " + this.ano;
+		return this.nome; //para o mostra filmes
 	}
 	
 	/**
@@ -92,6 +98,6 @@ public class Filme {
 	 * @return toString.
 	 */
 	public String toStringFilme() {
-		return this.nome + ", " + this.ano + "\n" + this.local;
+		return this.nome + ", " + this.ano + "\n" + this.local; //para o detalha filme
 	}
 }

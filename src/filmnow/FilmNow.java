@@ -9,14 +9,17 @@ package filmnow;
 public class FilmNow {
 	
 	private static final int TAMANHO = 100;
+	private static final int TAMANHOHOTLIST = 10;
 	
 	private Filme[] filmes; //uma representacao simploria da lista de filmes
+	private Filme[] hotList; //uma representacao simploria da hotlist
 
 	/**
 	 * Cria o FilmNow.
 	 */
 	public FilmNow() {
 		this.filmes = new Filme[TAMANHO];
+		this.hotList = new Filme[TAMANHOHOTLIST];
 	}
 	
 	/**
@@ -25,6 +28,14 @@ public class FilmNow {
 	 */
 	public Filme[] getFilmes() {
 		return this.filmes.clone();		
+	}
+	
+	/**
+	 * Acessa a hotlist
+	 * @return O array de filmes favoritos
+	 */
+	public Filme[] getHot() {
+		return this.hotList.clone();		
 	}
 
 	/**
@@ -55,29 +66,69 @@ public class FilmNow {
 		if (posicao < 1 || posicao > 100) {
 			throw new IndexOutOfBoundsException("POSICAO INVALIDA");
 		}
-		if(nome.isEmpty()) {
+		if(nome.isEmpty() || nome.isBlank()) {
 			throw new IllegalArgumentException("FILME INVALIDO");
 		}	
-		if(local.isEmpty()) {
+		if(local.isEmpty() || local.isBlank()) {
 			throw new IllegalArgumentException("FILME INVALIDO");
 		}	
 		if(filme.jaExiste(this.getFilmes())) {
-			throw new IllegalArgumentException("CONTATO JA CADASTRADO");
+			throw new IllegalArgumentException("FILME JÁ ADICIONADO");
 		}
 		
 		this.filmes[posicao] = filme;
 	}
-
+	
 	/**
-	 * Retorna o contato localizado na posicao selecionada.
-	 * Caso o contato esteja na lista de favoritos, ele terá um "❤️" no início. 
-	 * @param posicao Posicao do contato.
-	 * @return o contato formatado.
+	 * Retorna o filme localizado na posicao selecionada.
+	 * Caso o filme esteja na hotlist, ele retornará com um 🔥 no início.
+	 * @param posicao Posicao do filme.
+	 * @return o nome do filme ano de lançamento e local.
 	 */
 	public String detalhaFilme(int posicao) {
-		
+		if(this.filmes[posicao] == this.hotList[posicao]) {
+			return "🔥" + " " + filmes[posicao].toStringFilme();
+		}
 		return filmes[posicao].toStringFilme();
 	}
 	
+	/**
+	 * Adiciona um filme na hotlist.
+	 * @param posicao Posicao do filme na lista de filmes.
+	 * @param posicao Posicao na hotlist onde o filme será alocado.
+	 */
+	public void adicionaHot(int posicao, int posicaoHot) {	
+		for(int i = 1; i < hotList.length; i++) {
+			if(filmes[posicaoHot].equals(hotList[i]) && filmes[posicaoHot] != null && hotList[i] != null) {
+				System.out.println("FILME JÁ ESTÁ NA HOTLIST");
+				return;
+			}
+		}
+		
+		this.hotList[posicao] = this.filmes[posicaoHot];
+		System.out.println("ADICIONADO À HOTLIST NA POSIÇÃO " + posicao + "!");
+		
+	}
+	
+	/**
+	 * Retorna a hotList.
+	 */
+	public void exibirHotList() {
+		
+		for(int i = 1; i < hotList.length; i++) {
+			if(hotList[i] != null) {
+				System.out.println(i + " - " + hotList[i].getNome() + " " + hotList[i].getAno());
+			}
+		}	
+	}
+	
+	/**
+	 * Remove um filme da hotlist, na posicao informada.
+	 * @param posicao Posicao do filme na hotlist..
+	 */
+	public void removeHot(int posicao) {
+		
+		hotList[posicao] = null;
+	}
+	
 }
-
