@@ -8,8 +8,8 @@ package filmnow;
  */
 public class FilmNow {
 	
-	private static final int TAMANHO = 100;
-	private static final int TAMANHOHOTLIST = 10;
+	private static final int TAMANHO = 101;
+	private static final int TAMANHOHOTLIST = 11;
 	
 	private Filme[] filmes; //uma representacao simploria da lista de filmes
 	private Filme[] hotList; //uma representacao simploria da hotlist
@@ -86,8 +86,13 @@ public class FilmNow {
 	 * @return o nome do filme ano de lançamento e local.
 	 */
 	public String detalhaFilme(int posicao) {
-		if(this.filmes[posicao] == this.hotList[posicao]) {
-			return "🔥" + " " + filmes[posicao].toStringFilme();
+		
+		for (int i = 0; i < hotList.length; i ++) {
+			if(this.filmes[posicao] == this.hotList[i]) {
+				return "🔥" + " " + filmes[posicao].toStringFilme();
+		}
+		//if(this.filmes[posicao] == this.hotList[posicao]) {
+			//return "🔥" + " " + filmes[posicao].toStringFilme();
 		}
 		return filmes[posicao].toStringFilme();
 	}
@@ -98,6 +103,7 @@ public class FilmNow {
 	 * @param posicao Posicao na hotlist onde o filme será alocado.
 	 */
 	public void adicionaHot(int posicao, int posicaoHot) {	
+		
 		for(int i = 1; i < hotList.length; i++) {
 			if(filmes[posicaoHot].equals(hotList[i]) && filmes[posicaoHot] != null && hotList[i] != null) {
 				System.out.println("FILME JÁ ESTÁ NA HOTLIST");
@@ -105,8 +111,8 @@ public class FilmNow {
 			}
 		}
 		
-		this.hotList[posicao] = this.filmes[posicaoHot];
-		System.out.println("ADICIONADO À HOTLIST NA POSIÇÃO " + posicao + "!");
+		this.hotList[posicaoHot] = this.filmes[posicao];
+		System.out.println("ADICIONADO À HOTLIST NA POSIÇÃO " + posicaoHot + "!");
 		
 	}
 	

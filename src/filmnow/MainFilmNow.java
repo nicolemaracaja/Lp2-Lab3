@@ -75,11 +75,14 @@ public class MainFilmNow {
 			detalharFilme(fn, scanner);
 			break;
 		case "E":
-			exibiHotList(fn);
+			exibirHotList(fn);
+			break;
 		case "H":
 			adicionarHot(fn, scanner);
+			break;
 		case "R":
 			removerHot(fn, scanner);
+			break;
 		case "S":
 			sai();
 			break;
@@ -98,37 +101,38 @@ public class MainFilmNow {
 		int posicao = scanner.nextInt();
 		
 		fn.removeHot(posicao);
+		return;
 	}
 
 	private static void adicionarHot(FilmNow fn, Scanner scanner) {
 		
-		System.out.print("Filme> ");
-		int filmeposicao = scanner.nextInt();
-		
-		if(filmeposicao < 1 || filmeposicao > 100) {
-			System.out.println("POSIÇÃO INVÁLIDA");
-			return;
+		while (true) {
+			System.out.print("Filme> ");
+			int posicaoFilme = scanner.nextInt();
+			
+			if(posicaoFilme < 1 || posicaoFilme > 100) {
+				System.out.println("POSIÇÃO INVÁLIDA");
+				return;
+			}
+			
+			System.out.print("Posicao> ");
+			int posicaoHot = scanner.nextInt();
+			
+			if(posicaoHot < 1 || posicaoHot > 10) {
+				System.out.println("POSIÇÃO INVÁLIDA");
+				return;
+			}
+			
+			fn.adicionaHot(posicaoFilme, posicaoHot);
+			break;
 		}
-		System.out.print("Posicao> ");
-		int posicaoHot = scanner.nextInt();
-		
-		if(posicaoHot < 1 || posicaoHot > 10) {
-			System.out.println("POSIÇÃO INVÁLIDA");
-			return;
-		}
-		
-		fn.adicionaHot(filmeposicao, posicaoHot);
-		
-		System.out.println("ADICIONADO Á HOTLIST NA POSIÇÃO " + posicaoHot);
-		return;
 	}
-
 	/**
 	 * Imprime a HotList.
 	 * 
 	 * @param fn O sistema FilmNow
 	 */
-	private static void exibiHotList(FilmNow fn) {
+	private static void exibirHotList(FilmNow fn) {
 		fn.exibirHotList();
 	}		
 
@@ -151,7 +155,7 @@ public class MainFilmNow {
 	 * Imprime os detalhes de um dos filmes. 
 	 * 
 	 * @param fn O sistema FilmNow a ser manipulado.
-	 * @param scanner Scanner para capturar qual contato.
+	 * @param scanner Scanner para capturar qual filme.
 	 */
 	private static void detalharFilme(FilmNow fn, Scanner scanner) {
 		System.out.print("\nQual filme> ");
@@ -161,8 +165,7 @@ public class MainFilmNow {
 			System.out.println("POSICAO INVALIDA");
 			return;
 		}
-		Filme filme = fn.getFilme(posicao);
-		System.out.println("Dados do filme:\n" + filme.toStringFilme());
+		System.out.println("Dados do filme:\n" + fn.detalhaFilme(posicao));
 	}
 
 	/**
@@ -187,6 +190,7 @@ public class MainFilmNow {
 		while (true) {
 			
 			System.out.print("\nPosição no sistema> ");
+			scanner.nextLine();
 			int posicao = scanner.nextInt();
 			
 			if (posicao < 1 || posicao > 100) {
