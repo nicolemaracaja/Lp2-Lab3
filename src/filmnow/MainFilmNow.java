@@ -103,7 +103,12 @@ public class MainFilmNow {
 		fn.removeHot(posicao);
 		return;
 	}
-
+	
+	/**
+	 * Adiciona um filme à hotlist.
+	 * @param fn O sistema Filmnow.
+	 * @param scanner Scanner para pedir a posicao.
+	 */
 	private static void adicionarHot(FilmNow fn, Scanner scanner) {
 		
 		while (true) {
@@ -129,7 +134,6 @@ public class MainFilmNow {
 	}
 	/**
 	 * Imprime a HotList.
-	 * 
 	 * @param fn O sistema FilmNow
 	 */
 	private static void exibirHotList(FilmNow fn) {
@@ -208,15 +212,10 @@ public class MainFilmNow {
 			}
 			
 			System.out.print("\nAno> ");
-			String ano = scanner.next();
+			String ano = scanner.nextLine();
 			
-			if (ano.isBlank()) { //caso a entrada seja vazia, caso de erro
-				System.out.println("FILME INVÁLIDO");
-				return;
-			}
 					
 			System.out.print("\nLocal> ");
-			scanner.nextLine();
 			String local = scanner.nextLine();
 			
 			if (local.isEmpty() || local.equals("")) {

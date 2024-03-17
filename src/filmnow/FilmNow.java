@@ -109,8 +109,7 @@ public class FilmNow {
 				System.out.println("FILME JÁ ESTÁ NA HOTLIST");
 				return;
 			}
-		}
-		
+		}		
 		this.hotList[posicaoHot] = this.filmes[posicao];
 		System.out.println("ADICIONADO À HOTLIST NA POSIÇÃO " + posicaoHot + "!");
 		
