@@ -64,13 +64,13 @@ public class FilmNow {
 		Filme filme = new Filme(nome, ano, local);
 		
 		if (posicao < 1 || posicao > 100) {
-			throw new IndexOutOfBoundsException("POSICAO INVALIDA");
+			throw new IndexOutOfBoundsException("POSIÇÃO INVÁLIDA");
 		}
 		if(nome.isEmpty() || nome.isBlank()) {
-			throw new IllegalArgumentException("FILME INVALIDO");
+			throw new IllegalArgumentException("FILME INVÁLIDO");
 		}	
 		if(local.isEmpty() || local.isBlank()) {
-			throw new IllegalArgumentException("FILME INVALIDO");
+			throw new IllegalArgumentException("FILME INVÁLIDO");
 		}	
 		if(filme.jaExiste(this.getFilmes())) {
 			throw new IllegalArgumentException("FILME JÁ ADICIONADO");

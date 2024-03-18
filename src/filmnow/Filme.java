@@ -26,10 +26,10 @@ public class Filme {
 		this.local = local;
 
 		if(nome.isBlank()) { //verifica se a entrada contem apenas espacos em branco
-			throw new IllegalArgumentException("FILME INVALIDO");
+			throw new IllegalArgumentException("FILME INVÁLIDO");
 		}
 		if(local.isBlank()) { //verifica se a entrada contem apenas espacos em branco
-			throw new IllegalArgumentException("FILME INVALIDO");
+			throw new IllegalArgumentException("FILME INVÁLIDO");
 		}		
 	}
 	

@@ -166,7 +166,7 @@ public class MainFilmNow {
 		int posicao = scanner.nextInt();
 		
 		if(fn.getFilmes()[posicao] == null){
-			System.out.println("POSICAO INVALIDA");
+			System.out.println("POSIÇÃO INVÁLIDA");
 			return;
 		}
 		System.out.println("Dados do filme:\n" + fn.detalhaFilme(posicao));
