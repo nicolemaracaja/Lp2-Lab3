@@ -128,9 +128,15 @@ public class MainFilmNow {
 				return;
 			}
 			
-			fn.adicionaHot(posicaoFilme, posicaoHot);
-			break;
-		}
+			if (fn.adicionaHot(posicaoFilme, posicaoHot) == false) {
+				System.out.println("FILME JÁ ESTÁ NA HOTLIST");
+				return;
+			}else {
+				fn.adicionaHot(posicaoFilme, posicaoHot);
+				System.out.println("ADICIONADO À HOTLIST NA POSIÇÃO " + posicaoHot + "!");
+				break;
+			}
+		}	
 	}
 	/**
 	 * Imprime a HotList.

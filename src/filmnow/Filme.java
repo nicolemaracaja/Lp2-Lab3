@@ -72,8 +72,8 @@ public class Filme {
 	
 	/**
 	 * Indica se o filme ja existe, baseado no equals.
-	 * @param filme Array de Filmes
-	 * @return true ou false, true se já existir, false caso contrário..
+	 * @param filme Array de Filmes.
+	 * @return true ou false, true se já existir, false caso contrário.
 	 */
 	public boolean jaExiste(Filme[] filmes) {
 		for(Filme f: filmes) {

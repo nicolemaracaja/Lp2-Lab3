@@ -102,17 +102,15 @@ public class FilmNow {
 	 * @param posicao Posicao do filme na lista de filmes.
 	 * @param posicao Posicao na hotlist onde o filme será alocado.
 	 */
-	public void adicionaHot(int posicao, int posicaoHot) {	
+	public boolean adicionaHot(int posicao, int posicaoHot) {	
 		
 		for(int i = 1; i < hotList.length; i++) {
-			if(filmes[posicaoHot].equals(hotList[i]) && filmes[posicaoHot] != null && hotList[i] != null) {
-				System.out.println("FILME JÁ ESTÁ NA HOTLIST");
-				return;
+			if (hotList[i] != null && hotList[i].equals(filmes[posicao])) {
+				return false;
 			}
 		}		
 		this.hotList[posicaoHot] = this.filmes[posicao];
-		System.out.println("ADICIONADO À HOTLIST NA POSIÇÃO " + posicaoHot + "!");
-		
+		return true;
 	}
 	
 	/**

@@ -1,5 +1,6 @@
 package filmnowTeste;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -12,6 +13,7 @@ import filmnow.Filme;
 class FilmeTeste {
 
 	private Filme filmeBase;
+	private Filme[] filmes;
 	
 	@BeforeEach
 	void preparaFilme() throws Exception {
@@ -66,11 +68,6 @@ class FilmeTeste {
 		
 		assertEquals(true, filmeBase.equals(filmeBase));
 		assertEquals(false, filmeBase.equals(filme4));
-	}
-
-	@Test
-	void testJaExiste() {
-		
 	}
 
 	@Test
