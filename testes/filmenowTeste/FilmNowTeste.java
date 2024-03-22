@@ -1,15 +1,12 @@
-package filmnowTeste;
+package filmenowTeste;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import filmnow.FilmNow;
-import filmnow.Filme;
-import filmnow.MainFilmNow;
 
 /**
  * Testes do FilmNow.
@@ -132,7 +129,7 @@ class FilmNowTeste {
 	@Test
 	void testDetalhaFilmeAnoVazio() { //teste2
 		fnBase.cadastraFilme(1, "20 dias em Mariupol", "", "Cinema");
-		assertEquals("20 dias em Mariupol, " + "\n" + "Cinema", fnBase.detalhaFilme(1));
+		assertEquals("20 dias em Mariupol" + "\n" + "Cinema", fnBase.detalhaFilme(1));
 	}
 	
 	@Test
