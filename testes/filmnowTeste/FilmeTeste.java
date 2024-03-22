@@ -3,17 +3,14 @@ package filmnowTeste;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import filmnow.FilmNow;
 import filmnow.Filme;
 
 class FilmeTeste {
 
 	private Filme filmeBase;
-	private Filme[] filmes;
 	
 	@BeforeEach
 	void preparaFilme() throws Exception {
@@ -33,14 +30,15 @@ class FilmeTeste {
 	
 	@Test
 	void testFilmeAnoBranco() {
-		
+		Filme filme3 = new Filme("Avatar", "", "Disney+");
+		assertEquals("Avatar" + "\n" + "Disney+", filme3.toStringFilme());
 	}
 	
 	@Test
 	void testFilmeLocalBranco() {
-		Filme filme3;
+		Filme filme4;
 		try {
-			filme3 = new Filme("Avatar", "2009", "");
+			filme4 = new Filme("Avatar", "2009", "");
 			fail();
 		}catch(IllegalArgumentException iae) {
     		assertEquals("FILME INVÁLIDO", iae.getMessage());
@@ -64,10 +62,10 @@ class FilmeTeste {
 
 	@Test
 	void testEqualsObject() {
-		Filme filme4 = new Filme("Donzela", "2024", "Netflix");
+		Filme filme5 = new Filme("Donzela", "2024", "Netflix");
 		
 		assertEquals(true, filmeBase.equals(filmeBase));
-		assertEquals(false, filmeBase.equals(filme4));
+		assertEquals(false, filmeBase.equals(filme5));
 	}
 
 	@Test

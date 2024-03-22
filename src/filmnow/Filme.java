@@ -98,6 +98,9 @@ public class Filme {
 	 * @return toString.
 	 */
 	public String toStringFilme() {
-		return this.nome + ", " + this.ano + "\n" + this.local; //para o detalha filme
+		if (this.ano == "") {
+			return this.nome + "\n" + this.local; //para o detalha filme com ano em branco
+		}
+	return this.nome + ", " + this.ano + "\n" + this.local; //para o detalha filme
 	}
 }

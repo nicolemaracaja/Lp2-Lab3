@@ -85,14 +85,22 @@ public class FilmNow {
 	 * @param posicao Posicao do filme.
 	 * @return o nome do filme ano de lançamento e local.
 	 */
-	public String detalhaFilme(int posicao) {
+	public String detalhaFilme(int posicao) throws IndexOutOfBoundsException {
+		
+		if (posicao < 1 || posicao > 100 ) {
+			throw new IndexOutOfBoundsException("POSIÇÃO INVÁLIDA");
+		}
+		
+		if (filmes[posicao] == null) {
+			throw new NullPointerException("");
+		}
 		
 		for (int i = 0; i < hotList.length; i ++) {
-			if(this.filmes[posicao] == this.hotList[i]) {
-				return "🔥" + " " + filmes[posicao].toStringFilme();
-		}
-		//if(this.filmes[posicao] == this.hotList[posicao]) {
-			//return "🔥" + " " + filmes[posicao].toStringFilme();
+			if (hotList[i] != null) {
+				if(this.filmes[posicao] == this.hotList[i]) {
+					return "🔥" + " " + filmes[posicao].toStringFilme();
+				}
+			}
 		}
 		return filmes[posicao].toStringFilme();
 	}

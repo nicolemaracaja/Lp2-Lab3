@@ -123,18 +123,57 @@ class FilmNowTeste {
 	}
 
 	@Test
-	void testDetalhaFilmeNormal() {
+	void testDetalhaFilmeNormalTodosDados() { //teste1
 		
 		fnBase.cadastraFilme(1, "Avatar", "2009", "Disney+");
 		assertEquals("Avatar" + ", " + "2009" + "\n" + "Disney+", fnBase.detalhaFilme(1));
 	}
 	
-	void testDetalhaFilmeHot() {
+	@Test
+	void testDetalhaFilmeAnoVazio() { //teste2
+		fnBase.cadastraFilme(1, "20 dias em Mariupol", "", "Cinema");
+		assertEquals("20 dias em Mariupol, " + "\n" + "Cinema", fnBase.detalhaFilme(1));
+	}
+	
+	@Test
+	void testDetalhaFilmePosicaoVazia() { //teste3
+		
+		try {
+			fnBase.detalhaFilme(85);
+		}catch(NullPointerException iae) {
+			assertEquals("", iae.getMessage());
+		}
+	}
+	
+	@Test
+	void testDetalhaFilmePosicaoAbaixoLimiteInferior() { //teste4
+		
+		try {
+			fnBase.detalhaFilme(-1);
+			fail();
+		}catch (IndexOutOfBoundsException iae) {
+			assertEquals("POSIÇÃO INVÁLIDA", iae.getMessage());
+		}
+	}
+	
+	@Test
+	void testDetalhaFilmePosicaoAcimaLimiteSuperior() { //teste5
+		
+		try {
+			fnBase.detalhaFilme(101);
+			fail();
+		}catch (IndexOutOfBoundsException iae) {
+			assertEquals("POSIÇÃO INVÁLIDA", iae.getMessage());
+		}
+	}
+	
+	@Test
+	void testDetalhaFilmeHot() { //teste6
 		
 		fnBase.cadastraFilme(1, "Avatar", "2009", "Disney+");
 		fnBase.adicionaHot(1, 1);
 		
-		assertEquals("🔥" + "Avatar" + ", " + "2009" + "\n" + "Disney+", fnBase.detalhaFilme(1));
+		assertEquals("🔥 " + "Avatar" + ", " + "2009" + "\n" + "Disney+", fnBase.detalhaFilme(1));
 	}
 
 	@Test
